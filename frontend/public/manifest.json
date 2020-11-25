@@ -13,14 +13,6 @@
     "bookmarks",
     "cookies"
   ],
-  "background": {
-    "scripts": ["static/js/background.js"],
-    "persistent": false
-  },
-  "content_scripts": [{
-    "js": [ "static/js/content.js" ],
-    "matches": ["<all_urls>"]
-  }],
   "icons": {
     "16": "icon5off.png",
     "32": "icon5off.png",
@@ -32,11 +24,7 @@
       "16": "icon5off.png",
       "32": "icon5off.png"
     },
-    "default_title": "Capybara",
+    "default_title": "Capybara popup",
     "default_popup": "popup.html"
-  },
-  "options_ui": {
-    "page": "options.html",
-    "open_in_tab": true
   }
 }
