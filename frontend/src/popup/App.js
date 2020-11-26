@@ -1,39 +1,32 @@
-import React from 'react';
-// import React, { useEffect } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { State } from './app/store/states/types';
-// import { authorise } from './app/store/states/domainData/slices/auth/auth';
-// import Capybara from './app/Components/Capybara/Capybara';
-// import Overlay from './app/Components/Overlay/Overlay';
-// import { Overlay as OverlayState } from './app/store/states/ui/slices/overlay/types';
-// import './App.scss';
+// import React from 'react';
+import React, { useState } from 'react';
+import { cloneDeep } from 'lodash';
+import { CSSTransition } from 'react-transition-group';
 
-const addBmark = () => {
-  chrome.bookmarks.create({
-    title: 'ffff',
-    url: 'https://sch1231.mskobr.ru/#/',
+import './CapybaraContextMenu.scss';
+import { CapybaraContextMenuProps } from './types';
+import { ContextMenu, MenuItem } from 'react-contextmenu';
+import { setOverlay } from '../../../store/states/ui/slices/overlay/overlay';
+import { setLayout } from '../../../store/states/appState/slices/layout/layout';
+import { createNewLinkTile } from '../../Capybara/helpers';
+
+const impAll = () => {
+  // const newItem = createNewLinkTile(layout);
+  // const newLayout = cloneDeep(layout);
+  // newLayout.push(newItem);
+  // dispatch(setLayout(newLayout));
+
+  chrome.bookmarks.getChildren('1', function (result) {
+    let arr = result.filter((i) => !i.url);
+    console.log(arr);
   });
 };
 
-const delBmark = () => {
-  chrome.bookmarks.search({ title: 'ffff' }, function (result) {
-    chrome.bookmarks.remove(result[0].id);
-  });
-};
-
-const findBmark = () => {
-  chrome.bookmarks.search({ title: 'ffff' }, function (result) {
-    console.log(result);
-  });
-};
-// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function App() {
   return (
     <div className="App">
-      <div>priviet popup!</div>
-      <button onClick={addBmark}>+</button>
-      <button onClick={delBmark}>-</button>
-      <button onClick={findBmark}>?</button>
+      <div>popup html</div>
+      <button onClick={imAll}>import</button>
     </div>
   );
 }
