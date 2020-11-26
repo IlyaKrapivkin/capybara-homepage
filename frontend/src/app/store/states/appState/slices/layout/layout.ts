@@ -2,9 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LayoutItem } from '../layout/types';
 import { getLayoutFromLocalStorage, findLayoutItemById } from './helpers';
 import { EditTileInputsData } from '../../../../../Components/Overlay/OverlayContent/EditTileForm/types';
-import mock from '../../../../../../layout-mock';
+// import mock from '../../../../../../layout-mock';
 
-const initialState: LayoutItem[] = getLayoutFromLocalStorage() || mock;
+// const initialState: LayoutItem[] = getLayoutFromLocalStorage() || mock;
+const initialState: LayoutItem[] = getLayoutFromLocalStorage() || [];
 
 export const LayoutStateSlice = createSlice({
   name: 'layout',
