@@ -8,8 +8,8 @@ import React from 'react';
 // import { Overlay as OverlayState } from './app/store/states/ui/slices/overlay/types';
 // import './App.scss';
 
-const App: React.FC = () => {
+function App() {
   return <div className="App">priviet popup!</div>;
-};
+}
 
 export default App;

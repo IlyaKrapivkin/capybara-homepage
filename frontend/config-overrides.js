@@ -8,7 +8,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const multipleEntry = require('react-app-rewire-multiple-entry')([
   {
      // points to the popup entry point
-     entry: 'src/popup/index.tsx',
+     entry: 'src/popup/index.js',
      template: 'public/popup.html',
      outPath: '/popup.html'
   }
