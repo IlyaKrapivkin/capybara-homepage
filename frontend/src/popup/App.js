@@ -8,8 +8,36 @@ import React from 'react';
 // import { Overlay as OverlayState } from './app/store/states/ui/slices/overlay/types';
 // import './App.scss';
 
+const addBmark = () => {
+  chrome.bookmarks.create({
+    title: 'ffff',
+    url: 'https://sch1231.mskobr.ru/#/',
+  });
+};
+
+const delBmark = () => {
+  chrome.bookmarks.remove('fff', function (result) {
+    return result;
+  });
+};
+
+const findBmark = () => {
+  const abc = chrome.bookmarks.get('fff', function (result) {
+    return result;
+  });
+
+  console.log(abc);
+};
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function App() {
-  return <div className="App">priviet popup!</div>;
+  return (
+    <div className="App">
+      <div>priviet popup!</div>
+      <button onClick={addBmark}>+</button>
+      <button onClick={delBmark}>-</button>
+      <button onClick={findBmark}>?</button>
+    </div>
+  );
 }
 
 export default App;

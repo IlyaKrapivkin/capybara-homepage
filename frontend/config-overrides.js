@@ -28,6 +28,7 @@ const copyPlugin = new CopyPlugin({
   patterns: [
      // copy assets
      { from: 'public', to: '' },
+     { from: 'src/background/background.js', to: '' },
   ]
 })
 
