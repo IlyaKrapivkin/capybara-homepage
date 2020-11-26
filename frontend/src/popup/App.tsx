@@ -5,6 +5,7 @@ import { setLayout } from '../app/store/states/appState/slices/layout/layout';
 import { createNewLinkTile, createNewLinkTileFilled } from '../app/Components/Capybara/helpers';
 import { LayoutItem } from '../app/store/states/appState/slices/layout/types';
 import { State } from '../app/store/states/types';
+import { nanoid } from 'nanoid';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -13,14 +14,36 @@ const App: React.FC = () => {
   const impAll = () => {
     chrome.bookmarks.getChildren('1', function (result) {
       const arr = result.filter((i) => i.url);
-      console.log(arr);
-      const titleNew = arr[0].title;
-      const urlNew = arr[0].url || arr[0].title;
-      //
-      const newItem = createNewLinkTileFilled(layout, titleNew, urlNew);
-      const newLayout = cloneDeep(layout);
-      newLayout.push(newItem);
-      dispatch(setLayout(newLayout));
+      const arrTiles: LayoutItem[] = [];
+      for (let i = 0; i < arr.length; i += 1) {
+        const newTile = {
+          type: 'link',
+          data: {
+            grid: {
+              i: nanoid(),
+              x: i * 2,
+              y: 0,
+              w: 2,
+              h: 2,
+            },
+            content: {
+              title: arr[i].title,
+              url: arr[i].url || arr[i].title,
+            },
+            styles: {
+              backgroundColor: '#ffffff',
+              color: '#000000',
+            },
+          },
+        };
+        arrTiles.push(newTile);
+      }
+      console.log(layout);
+      console.log(arrTiles);
+      // const newLayout = cloneDeep(layout);
+      // newLayout.push(newItem);
+      dispatch(setLayout(arrTiles));
+      chrome.tabs.reload();
     });
   };
 

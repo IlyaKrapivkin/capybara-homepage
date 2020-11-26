@@ -22,8 +22,8 @@ export const getNewTileGridData = (layout: LayoutItem[]) => {
     }
   });
   return {
-    x: 1000000,
-    y: 1000000,
+    x: 100000,
+    y: 100000,
     w: 2,
     h: 2,
   };
@@ -40,7 +40,7 @@ export const createNewLinkTile = (layout: LayoutItem[]) => {
   };
   return newTile;
 };
-
+// Ilya's code below:
 export const createNewLinkTileFilled = (layout: LayoutItem[], titleNew: string, urlNew: string) => {
   const newTile = {
     type: 'link',
