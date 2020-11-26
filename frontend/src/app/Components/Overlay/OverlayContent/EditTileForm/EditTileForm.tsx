@@ -13,10 +13,17 @@ import './EditTileForm.scss';
 import { setTimeout } from 'timers';
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-const addBmark = () => {
-  chrome.bookmarks.create({
-    title: 'ffff',
-    url: 'https://sch1231.mskobr.ru/#/',
+const addBmark = (data: any) => {
+  const newTitle = data.content.title;
+  const newUrl = data.content.url;
+
+  chrome.bookmarks.search({ title: newTitle, url: newUrl }, function (result) {
+    if (!result.length) {
+      chrome.bookmarks.create({
+        title: newTitle,
+        url: newUrl,
+      });
+    }
   });
 };
 
@@ -67,7 +74,7 @@ const EditTileForm: React.FC<EditData> = ({ id, type }) => {
     dispatch(setLayoutItemData(inputsData));
     dispatch(unsetOverlay());
 
-    addBmark();
+    addBmark(inputsData);
   };
 
   const [to, setTo] = useState(inputsData.content.url);
