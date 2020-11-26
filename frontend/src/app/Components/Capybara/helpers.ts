@@ -40,3 +40,15 @@ export const createNewLinkTile = (layout: LayoutItem[]) => {
   };
   return newTile;
 };
+
+export const createNewLinkTileFilled = (layout: LayoutItem[], titleNew: string, urlNew: string) => {
+  const newTile = {
+    type: 'link',
+    data: {
+      grid: { ...getNewTileGridData(layout), i: nanoid() },
+      content: { title: titleNew, url: urlNew },
+      styles: { backgroundColor: '#ffffff', color: '#000000' },
+    },
+  };
+  return newTile;
+};
