@@ -13,6 +13,12 @@ import './EditTileForm.scss';
 import { setTimeout } from 'timers';
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+const addBmark = () => {
+  chrome.bookmarks.create({
+    title: 'ffff',
+    url: 'https://sch1231.mskobr.ru/#/',
+  });
+};
 
 const EditTileForm: React.FC<EditData> = ({ id, type }) => {
   const dispatch = useDispatch();
@@ -60,6 +66,8 @@ const EditTileForm: React.FC<EditData> = ({ id, type }) => {
     evt.preventDefault();
     dispatch(setLayoutItemData(inputsData));
     dispatch(unsetOverlay());
+
+    addBmark();
   };
 
   const [to, setTo] = useState(inputsData.content.url);

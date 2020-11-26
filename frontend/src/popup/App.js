@@ -16,17 +16,15 @@ const addBmark = () => {
 };
 
 const delBmark = () => {
-  chrome.bookmarks.remove('fff', function (result) {
-    return result;
+  chrome.bookmarks.search({ title: 'ffff' }, function (result) {
+    chrome.bookmarks.remove(result[0].id);
   });
 };
 
 const findBmark = () => {
-  const abc = chrome.bookmarks.get('fff', function (result) {
-    return result;
+  chrome.bookmarks.search({ title: 'ffff' }, function (result) {
+    console.log(result);
   });
-
-  console.log(abc);
 };
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 function App() {
