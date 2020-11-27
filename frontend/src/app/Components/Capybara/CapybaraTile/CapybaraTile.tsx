@@ -10,6 +10,12 @@ const CapybaraTile: React.FC<CapybaraTileProps> = ({ type, content, styles, dime
           {content.title}
         </CapybaraLink>
       );
+    case 'folder':
+      return (
+        <CapybaraLink styles={styles} to={content.url} dimensions={dimensions}>
+          {content.title}
+        </CapybaraLink>
+      );
     default:
       throw new Error('Invalid capybara tile type recieved while mapping types to Components');
   }
