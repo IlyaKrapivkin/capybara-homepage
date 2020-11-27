@@ -8,7 +8,7 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   //
   const impAll = () => {
-    const arrFinal: any[] = [];
+    let arrFinal: any[] = [];
     const arrRoot: any[] = [];
     chrome.bookmarks.getTree(function (tree) {
       const root1 = tree[0];
@@ -34,6 +34,7 @@ const App: React.FC = () => {
                 y: yCor,
                 w: 20,
                 h: 1,
+                static: true,
               },
               content: {
                 title: item.title,
@@ -72,8 +73,52 @@ const App: React.FC = () => {
               arrFinal.push(newBmark);
             }
           });
+        } else {
+          const newBmark = {
+            type: 'link',
+            data: {
+              grid: {
+                i: nanoid(),
+                x: arrRoot.length % 20,
+                y: 10000,
+                w: 1,
+                h: 1,
+              },
+              content: {
+                title: item.title,
+                url: item.url || item.title,
+              },
+              styles: {
+                backgroundColor: '#ffffff',
+                color: '#000000',
+              },
+            },
+          };
+          arrRoot.push(newBmark);
         }
       });
+      const newFolder = {
+        type: 'folder',
+        data: {
+          grid: {
+            i: nanoid(),
+            x: 0,
+            y: yCor + 1,
+            w: 20,
+            h: 1,
+          },
+          content: {
+            title: 'r-o-o-t',
+            url: 'chrome://newtab',
+          },
+          styles: {
+            backgroundColor: '#ffffff00',
+            color: '#ffffff',
+          },
+        },
+      };
+      arrFinal.push(newFolder);
+      arrFinal = arrFinal.concat(arrRoot);
       dispatch(setLayout(arrFinal));
       chrome.tabs.reload();
     });
