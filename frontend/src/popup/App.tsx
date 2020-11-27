@@ -10,33 +10,28 @@ const App: React.FC = () => {
     chrome.bookmarks.getChildren('1', function (result) {
       const arr = result.filter((i) => i.url);
       const arrTiles: LayoutItem[] = [];
-      for (let i = 0; i < arr.length; i += 10) {
-        for (let j = 0; j < 10; j += 1) {
-          if (!arr[i + j]) {
-            break;
-          }
-          const newTile = {
-            type: 'link',
-            data: {
-              grid: {
-                i: nanoid(),
-                x: j * 2,
-                y: Math.floor(i / 5) * 2,
-                w: 2,
-                h: 2,
-              },
-              content: {
-                title: arr[i + j].title,
-                url: arr[i + j].url || arr[i + j].title,
-              },
-              styles: {
-                backgroundColor: '#ffffff',
-                color: '#000000',
-              },
+      for (let i = 0; i < arr.length; i += 1) {
+        const newTile = {
+          type: 'link',
+          data: {
+            grid: {
+              i: nanoid(),
+              x: (i * 2) % 20,
+              y: 0,
+              w: 2,
+              h: 1,
             },
-          };
-          arrTiles.push(newTile);
-        }
+            content: {
+              title: arr[i].title,
+              url: arr[i].url || arr[i].title,
+            },
+            styles: {
+              backgroundColor: '#ffffff',
+              color: '#000000',
+            },
+          },
+        };
+        arrTiles.push(newTile);
       }
       dispatch(setLayout(arrTiles));
       chrome.tabs.reload();
