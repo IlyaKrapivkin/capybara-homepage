@@ -5,7 +5,8 @@ The app's aims are to manage user's browser bookmarks.
 
 ## Installation
 To run this app you need installed:
-- Node.js  
+- Node.js
+
 To run this app as chrome extension:
 - upload 'build' folder as a extension via developer mode
 ## Libraries and frameworks
