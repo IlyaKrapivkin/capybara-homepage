@@ -10,7 +10,14 @@ To run this app you need installed:
 To run this app as chrome extension:
 - upload 'build' folder as a extension via developer mode
 ## Libraries and frameworks
-![img stack](stack.png)
+![img stack](stack.png)  
+
+Packages for export to chrome:  
+- customize-cra
+- react-app-rewired
+- copy-webpack-plugin
+- react-app-rewire-multiple-entry
+
 ## Authors
 [Ilya Krapivkin](https://github.com/IlyaKrapivkin)
 
